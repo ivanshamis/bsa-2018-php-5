@@ -1,5 +1,8 @@
 <?php
 
+use App\Services\{CurrencyRepositoryInterface,CurrencyPresenter};
+use App\Services\GetPopularCurrenciesCommandHandler;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +16,14 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/currencies/popular', function () {
+    $repository =  App::make(CurrencyRepositoryInterface::class);
+    $command = new GetPopularCurrenciesCommandHandler($repository);
+    $currencies = $command->handle();
+    foreach ($currencies as $currency) {
+        $presented[] = CurrencyPresenter::present($currency);   
+    }
+    return Response::view('popular_currencies', ['currencies' => $presented]);
 });
