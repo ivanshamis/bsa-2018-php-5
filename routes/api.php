@@ -26,7 +26,7 @@ Route::get('/currencies', function () {
     foreach ($currencies as $currency) { 
         $presented[] = CurrencyPresenter::present($currency); 
     }   
-    return Response(json_encode($presented),200)->header('Content-Type', 'application/json');;
+    return Response(json_encode($presented),200)->header('Content-Type', 'application/json');
 });
 
 Route::get('/currencies/unstable', function () {
@@ -34,5 +34,5 @@ Route::get('/currencies/unstable', function () {
     $command = new GetMostChangedCurrencyCommandHandler($repository);
     $currency = $command->handle();
     $presented = CurrencyPresenter::present($currency);
-    return Response(json_encode($presented),200)->header('Content-Type', 'application/json');;
+    return Response(json_encode($presented),200)->header('Content-Type', 'application/json');
 });

@@ -25,7 +25,9 @@ class GetPopularCurrenciesCommandHandler
 
         for ($i=0; $i<$count; $i++)
             foreach ($currencies as $currency) {    
-                if ($currency->getID()==array_keys($prices)[$i]) { $popular[]=$currency; } 
+                if ($currency->getID()==array_keys($prices)[$i]) { 
+                    $popular[]=$currency; 
+                } 
             }
         return $popular;
     }
