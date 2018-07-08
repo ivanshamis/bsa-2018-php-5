@@ -22,7 +22,9 @@ class GetMostChangedCurrencyCommandHandler
         arsort($changed);
 
         foreach ($currencies as $currency) {
-            if ($currency->getID()==array_keys($changed)[0]) { return $currency; } 
+            if ($currency->getID()==array_keys($changed)[0]) { 
+                return $currency; 
+            } 
         }
     }
 }
